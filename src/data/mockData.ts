@@ -32,6 +32,7 @@ export interface Domain {
   id: string;
   name: string;
   ftr: number;
+  ftrChange: number; // % change in last 7 days (positive = increase, negative = decrease)
   segment: Segment;
   gamesCount: number;
 }
@@ -51,11 +52,11 @@ export const getSegmentLabel = (segment: Segment): string => {
 };
 
 export const domains: Domain[] = [
-  { id: 'math', name: 'Mathematics', ftr: 78, segment: 'age-appropriate', gamesCount: 4 },
-  { id: 'reading', name: 'Reading', ftr: 55, segment: 'developing', gamesCount: 3 },
-  { id: 'science', name: 'Science', ftr: 32, segment: 'emerging', gamesCount: 2 },
-  { id: 'language', name: 'Language Arts', ftr: 85, segment: 'age-appropriate', gamesCount: 3 },
-  { id: 'social', name: 'Social Studies', ftr: 62, segment: 'developing', gamesCount: 2 },
+  { id: 'math', name: 'Mathematics', ftr: 78, ftrChange: 5, segment: 'age-appropriate', gamesCount: 4 },
+  { id: 'reading', name: 'Reading', ftr: 55, ftrChange: -3, segment: 'developing', gamesCount: 3 },
+  { id: 'science', name: 'Science', ftr: 32, ftrChange: 8, segment: 'emerging', gamesCount: 2 },
+  { id: 'language', name: 'Language Arts', ftr: 85, ftrChange: 2, segment: 'age-appropriate', gamesCount: 3 },
+  { id: 'social', name: 'Social Studies', ftr: 62, ftrChange: 0, segment: 'developing', gamesCount: 2 },
 ];
 
 export const games: Game[] = [
