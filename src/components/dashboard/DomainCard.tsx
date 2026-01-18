@@ -1,4 +1,4 @@
-import { Check } from 'lucide-react';
+import { Check, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { Domain, getSegmentLabel } from '@/data/mockData';
 import { cn } from '@/lib/utils';
 
@@ -14,6 +14,21 @@ export const DomainCard = ({ domain, isSelected, onClick }: DomainCardProps) => 
     'developing': 'segment-developing',
     'age-appropriate': 'segment-age-appropriate',
   }[domain.segment];
+
+  const getTrendIcon = () => {
+    if (domain.ftrChange > 0) {
+      return <TrendingUp className="w-3 h-3 text-[hsl(var(--age-appropriate))]" />;
+    } else if (domain.ftrChange < 0) {
+      return <TrendingDown className="w-3 h-3 text-[hsl(var(--emerging))]" />;
+    }
+    return <Minus className="w-3 h-3 text-muted-foreground" />;
+  };
+
+  const getTrendColor = () => {
+    if (domain.ftrChange > 0) return 'text-[hsl(var(--age-appropriate))]';
+    if (domain.ftrChange < 0) return 'text-[hsl(var(--emerging))]';
+    return 'text-muted-foreground';
+  };
 
   return (
     <div
@@ -52,10 +67,14 @@ export const DomainCard = ({ domain, isSelected, onClick }: DomainCardProps) => 
         {getSegmentLabel(domain.segment)}
       </div>
 
-      {/* Games count */}
-      <p className="mt-2 text-xs text-muted-foreground">
-        {domain.gamesCount} {domain.gamesCount === 1 ? 'game' : 'games'}
-      </p>
+      {/* 7-day FTR change */}
+      <div className={cn('mt-2 flex items-center gap-1 text-xs', getTrendColor())}>
+        {getTrendIcon()}
+        <span className="font-medium">
+          {domain.ftrChange > 0 ? '+' : ''}{domain.ftrChange}%
+        </span>
+        <span className="text-muted-foreground">7d</span>
+      </div>
     </div>
   );
 };
