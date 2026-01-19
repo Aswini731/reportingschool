@@ -1,6 +1,8 @@
-import { Check, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { Check, TrendingUp, TrendingDown, Minus, Lightbulb, Star, Heart, Target } from 'lucide-react';
 import { Domain, getSegmentLabel } from '@/data/mockData';
 import { cn } from '@/lib/utils';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
 
 interface DomainCardProps {
   domain: Domain;
@@ -32,7 +34,7 @@ export const DomainCard = ({ domain, isSelected, onClick }: DomainCardProps) => 
 
   return (
     <div
-      className={cn('domain-card group', isSelected && 'selected')}
+      className={cn('domain-card group relative', isSelected && 'selected')}
       onClick={onClick}
       role="button"
       tabIndex={0}
@@ -75,6 +77,77 @@ export const DomainCard = ({ domain, isSelected, onClick }: DomainCardProps) => 
         </span>
         <span className="text-muted-foreground">7d</span>
       </div>
+
+      {/* See Suggestions Button */}
+      <Popover>
+        <PopoverTrigger asChild onClick={(e) => e.stopPropagation()}>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="absolute bottom-2 right-2 h-7 px-2 text-xs gap-1 text-muted-foreground hover:text-primary"
+          >
+            <Lightbulb className="w-3 h-3" />
+            See Suggestions
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent 
+          className="w-80 p-4" 
+          align="end" 
+          side="top"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="space-y-4">
+            <h4 className="font-display font-semibold text-sm text-foreground">
+              Suggestions for {domain.name}
+            </h4>
+
+            {/* Strengths */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm font-medium text-[hsl(var(--age-appropriate))]">
+                <Star className="w-4 h-4" />
+                <span>Strengths</span>
+              </div>
+              <ul className="space-y-1 ml-6">
+                {domain.suggestions.strengths.map((item, index) => (
+                  <li key={index} className="text-xs text-muted-foreground list-disc">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Area of Support */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm font-medium text-[hsl(var(--developing))]">
+                <Heart className="w-4 h-4" />
+                <span>Area of Support</span>
+              </div>
+              <ul className="space-y-1 ml-6">
+                {domain.suggestions.areaOfSupport.map((item, index) => (
+                  <li key={index} className="text-xs text-muted-foreground list-disc">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Preferred Alignment */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                <Target className="w-4 h-4" />
+                <span>Preferred Alignment</span>
+              </div>
+              <ul className="space-y-1 ml-6">
+                {domain.suggestions.preferredAlignment.map((item, index) => (
+                  <li key={index} className="text-xs text-muted-foreground list-disc">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };

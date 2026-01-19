@@ -28,6 +28,12 @@ export interface Game {
   masteredOn: string | null;
 }
 
+export interface DomainSuggestions {
+  strengths: string[];
+  areaOfSupport: string[];
+  preferredAlignment: string[];
+}
+
 export interface Domain {
   id: string;
   name: string;
@@ -35,6 +41,7 @@ export interface Domain {
   ftrChange: number; // % change in last 7 days (positive = increase, negative = decrease)
   segment: Segment;
   gamesCount: number;
+  suggestions: DomainSuggestions;
 }
 
 export const getSegment = (ftr: number): Segment => {
@@ -52,11 +59,71 @@ export const getSegmentLabel = (segment: Segment): string => {
 };
 
 export const domains: Domain[] = [
-  { id: 'math', name: 'Mathematics', ftr: 78, ftrChange: 5, segment: 'age-appropriate', gamesCount: 4 },
-  { id: 'reading', name: 'Reading', ftr: 55, ftrChange: -3, segment: 'developing', gamesCount: 3 },
-  { id: 'science', name: 'Science', ftr: 32, ftrChange: 8, segment: 'emerging', gamesCount: 2 },
-  { id: 'language', name: 'Language Arts', ftr: 85, ftrChange: 2, segment: 'age-appropriate', gamesCount: 3 },
-  { id: 'social', name: 'Social Studies', ftr: 62, ftrChange: 0, segment: 'developing', gamesCount: 2 },
+  { 
+    id: 'math', 
+    name: 'Mathematics', 
+    ftr: 78, 
+    ftrChange: 5, 
+    segment: 'age-appropriate', 
+    gamesCount: 4,
+    suggestions: {
+      strengths: ['Strong number recognition skills', 'Excellent pattern recognition', 'Quick mental math abilities'],
+      areaOfSupport: ['Word problems need more practice', 'Geometry concepts require reinforcement'],
+      preferredAlignment: ['Visual learning with manipulatives', 'Game-based learning approach']
+    }
+  },
+  { 
+    id: 'reading', 
+    name: 'Reading', 
+    ftr: 55, 
+    ftrChange: -3, 
+    segment: 'developing', 
+    gamesCount: 3,
+    suggestions: {
+      strengths: ['Good letter recognition', 'Developing phonemic awareness'],
+      areaOfSupport: ['Sight word vocabulary expansion', 'Reading fluency practice', 'Comprehension strategies'],
+      preferredAlignment: ['Multi-sensory reading activities', 'Repeated reading exercises']
+    }
+  },
+  { 
+    id: 'science', 
+    name: 'Science', 
+    ftr: 32, 
+    ftrChange: 8, 
+    segment: 'emerging', 
+    gamesCount: 2,
+    suggestions: {
+      strengths: ['Shows curiosity and interest', 'Engages well with hands-on activities'],
+      areaOfSupport: ['Scientific vocabulary building', 'Observation skills development', 'Classification concepts'],
+      preferredAlignment: ['Hands-on experiments', 'Nature-based learning', 'Visual demonstrations']
+    }
+  },
+  { 
+    id: 'language', 
+    name: 'Language Arts', 
+    ftr: 85, 
+    ftrChange: 2, 
+    segment: 'age-appropriate', 
+    gamesCount: 3,
+    suggestions: {
+      strengths: ['Excellent rhyming abilities', 'Strong story comprehension', 'Good vocabulary usage'],
+      areaOfSupport: ['Writing mechanics practice'],
+      preferredAlignment: ['Storytelling activities', 'Creative expression exercises']
+    }
+  },
+  { 
+    id: 'social', 
+    name: 'Social Studies', 
+    ftr: 62, 
+    ftrChange: 0, 
+    segment: 'developing', 
+    gamesCount: 2,
+    suggestions: {
+      strengths: ['Good community awareness', 'Understanding of family roles'],
+      areaOfSupport: ['Map reading skills', 'Historical timeline concepts', 'Cultural awareness expansion'],
+      preferredAlignment: ['Role-playing activities', 'Community exploration', 'Interactive maps']
+    }
+  },
 ];
 
 export const games: Game[] = [
