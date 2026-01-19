@@ -78,10 +78,6 @@ export const GamesTable = ({ games, selectedDomains }: GamesTableProps) => {
                 <TableHeader label="Game Name" />
                 <TableHeader label="Domain" />
                 <TableHeader
-                  label="Targets"
-                  tooltip="Number of learning objectives or skills within this game"
-                />
-                <TableHeader
                   label="Independent"
                   tooltip="Responses completed without any prompts or hints"
                 />

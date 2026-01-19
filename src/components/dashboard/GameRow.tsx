@@ -89,7 +89,6 @@ const TargetRow = ({ target }: { target: Target }) => (
       </div>
     </td>
     <td className="py-3 px-4 text-muted-foreground">—</td>
-    <td className="py-3 px-4 text-center text-muted-foreground">{target.attempts}</td>
     <td className="py-3 px-4 text-center">
       <MetricCell value={target.independent} label="Independent responses" />
     </td>
@@ -138,16 +137,6 @@ export const GameRow = ({ game }: GameRowProps) => {
           <span className="text-sm text-muted-foreground">
             {domain?.name || game.domainId}
           </span>
-        </td>
-        <td className="py-4 px-4 text-center">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <span className="cursor-help">{game.targets.length}</span>
-            </TooltipTrigger>
-            <TooltipContent className="tooltip-content">
-              {game.targets.length} learning objectives in this game
-            </TooltipContent>
-          </Tooltip>
         </td>
         <td className="py-4 px-4 text-center">
           <MetricCell value={game.independent} label="Independent responses" />
