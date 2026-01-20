@@ -83,11 +83,11 @@ export const DomainCard = ({ domain, isSelected, onClick }: DomainCardProps) => 
         <PopoverTrigger asChild onClick={(e) => e.stopPropagation()}>
           <Button
             variant="ghost"
-            size="sm"
-            className="absolute bottom-2 right-2 h-7 px-2 text-xs gap-1 text-muted-foreground hover:text-primary"
+            size="icon"
+            className="absolute bottom-1 right-1 h-6 w-6 text-muted-foreground hover:text-primary"
           >
-            <Lightbulb className="w-3 h-3" />
-            See Suggestions
+            <Lightbulb className="w-3.5 h-3.5" />
+            <span className="sr-only">See Suggestions</span>
           </Button>
         </PopoverTrigger>
         <PopoverContent 
